@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jungle.hotmap.mapper.StatMapper">
+  <resultMap id="BaseResultMap" type="com.jungle.hotmap.domain.Stat">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="time" jdbcType="BIGINT" property="time" />
+    <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+    <result column="longitude" jdbcType="DOUBLE" property="longitude" />
+  </resultMap>
+
+  <select id="selectTest" resultType="Stat">
+        SELECT
+          longitude,
+          latitude,
+          count(*)
+        FROM
+          stat
+        group by
+          longitude,
+          latitude
+
+    </select>
+  <select id="queryByunitclass"  resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM stat
+    </select>
+  <select id="selectRight" resultType="com.jungle.hotmap.bean.ResultBean">
+        SELECT
+          longitude as lng,
+          latitude as lat,
+          count(*) as count
+        FROM
+          stat
+        group by
+          longitude,
+          latitude
+
+    </select>
+
+</mapper>
